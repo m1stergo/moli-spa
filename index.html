@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Moli - Tu compra, tu momento</title>
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <!-- Google Fonts: Montserrat y Karla -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Karla&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Doppio+One&family=Economica:ital,wght@0,400;0,700;1,400;1,700&family=Oswald:wght@200..700&family=Oxygen+Mono&family=Pathway+Extreme:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Saira+Condensed:wght@100;200;300;400;500;600;700;800;900&family=Saira+Extra+Condensed:wght@100;200;300;400;500;600;700;800;900&family=Saira:ital,wght@0,100..900;1,100..900&family=Sofia+Sans+Extra+Condensed:ital,wght@0,1..1000;1,1..1000&family=Squada+One&family=Titan+One&family=Viga&display=swap" rel="stylesheet">
+    <style>
+        /* Colores inspirados en el logo: pasteles vibrantes con energía */
+        :root {
+            --green: #09AB7C;
+            --green-light: #C7F4C2;
+            --blue: #43A9D4;
+            --blue-light: #D1F1FF;
+            --orange: #E57357;
+            --orange-light: #FFDAD1;
+            --violet: #674DFF;
+            --violet-light: #D7D0FF;
+            --pink: #D95E7E;
+            --pink-light: #FFD1E4;
+            --yellow: #FDDD8B;
+            --yellow-light: #FFF2D1;
+
+            --primary-color: #674DFF; 
+            --secondary-color: #E57357; 
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Karla', sans-serif;
+            color: var(--text-color);
+            background-color: #fff;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-color);
+        }
+
+        .hero {
+            position: relative;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .button.is-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .button.is-primary:hover {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+
+        .stats-container {
+            background-color: var(--background-color);
+            padding: 3rem 1.5rem;
+        }
+
+        .cta-section {
+            background-color: var(--secondary-color);
+            color: #fff;
+            padding: 4rem 1.5rem;
+        }
+
+        .footer {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 2rem 1.5rem;
+        }
+
+        .footer a {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        .footer a:hover {
+            color: var(--background-color);
+        }
+
+        .presentation {
+            height: 100vh;
+            position: absolute;
+            inset: 0;
+        }
+        .presentation-back {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            z-index: 1;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .presentation-text{
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            position: absolute;
+            font-family: "Viga", serif;
+            font-weight: 400;
+            font-style: normal;
+            mix-blend-mode: color-burn;
+            color: rgb(16, 4, 34);
+            z-index: 2;
+        }
+        .estamos {
+            font-size: 2vw;
+            line-height: 1;
+        }
+        .transformando {
+            font-size: 8vw;
+            line-height: 1;
+        }
+        .la-manera-de {
+            font-size: 4vw;
+            line-height: 1;
+            text-align: center;
+        }
+        .comprar {
+            font-size: 12vw;
+            line-height: 1;
+            text-align: center;
+        }
+        .w-full {
+            width: 100%;
+        }
+        .body-large {
+            font-size: 2.8rem;
+        }
+        .body-medium {
+            font-size: 1.8rem;
+        }
+        .nosotros .button {
+
+        }
+        .ventas {
+            max-width: 180px;
+            justify-self: end;
+        }
+        .ventas .card {
+            background: var(--yellow-light);
+            background: linear-gradient(45deg, var(--yellow-light) 0%, rgba(255,255,255,1) 100%);
+        }
+        .calidad {
+            transform: translateY(30px);
+        }
+        .calidad .card {
+            background: var(--pink-light);
+background: linear-gradient(45deg, var(--pink-light) 0%, rgba(255,255,255,1) 100%);
+        }
+        .seguro {
+            align-self: start;
+            transform: translateY(30px);
+        }
+        .seguro .card {
+            background: var(--orange-light);
+            background: linear-gradient(45deg, var(--orange-light) 0%, rgba(255,255,255,1) 100%);
+        }
+        .comunidad {
+            align-self: start;
+        }
+        .comunidad .card {
+            background: var(--green-light);
+            background: linear-gradient(45deg, var(--green-light) 0%, rgba(255,255,255,1) 100%);
+        }
+        .facts {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .facts li {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        .facts .icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 100%;
+            padding: 8px;
+            flex-shrink: 0;
+        }
+        .facts .icon img {
+            mix-blend-mode: difference;
+        }
+        .morph {
+            width: 500px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+.gradient {
+    background-color:hsla(0,100%,93%,1);
+background-image:
+radial-gradient(at 40% 20%, hsla(27,0%,100%,1) 0px, transparent 50%),
+radial-gradient(at 80% 0%, hsla(189,79%,87%,1) 0px, transparent 50%),
+radial-gradient(at 0% 50%, hsla(180,100%,94%,1) 0px, transparent 50%),
+radial-gradient(at 61% 65%, hsla(57,0%,100%,1) 0px, transparent 50%),
+radial-gradient(at 0% 100%, hsla(0,0%,100%,1) 0px, transparent 50%),
+radial-gradient(at 80% 100%, hsla(240,100%,94%,1) 0px, transparent 50%),
+radial-gradient(at 0% 0%, hsla(340,0%,100%,1) 0px, transparent 50%);
+position: absolute;
+inset: 0;
+}
+
+.morph {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    opacity: 1;
+    filter: blur(1px);
+}
+.morph svg {
+    width: 800px;
+    height: 800px;
+    opacity: 0.2;
+  }
+
+  .logo img {
+    width: auto;
+    height: 40px;
+  }
+
+  .section-clientes {
+    position: relative;
+  }
+  .clientes {
+    display: flex;
+    justify-content: end;
+    gap: 1rem;
+    
+  }
+  .clientes .card {
+    height: 500px;
+    width: 100%;
+    max-width: 350px;
+  }
+
+  .card .icon img {
+    height: 24px;
+  }
+
+  .cliente-1 {
+    background-color: var(--green-light);
+    color: #31594e;
+  }
+
+  .cliente-2 {
+    background-color: var(--pink);
+    color: var(--violet-light)
+  }
+
+  .cta-wrapper {
+    padding: 15rem 1.5rem;
+    background-color: var(--primary-color);
+    color: var(--violet-light);
+    border-radius: 25px;
+    overflow: hidden;
+    z-index: 2;
+    position: relative;
+  } 
+  .cta-wrapper::before{
+    background-image: url(assets/target.png);
+    background-size: contain;
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 300px;
+    height: 300px;
+    mix-blend-mode: color-dodge;
+    left: -100px;
+    bottom: -100px;
+  }
+  .cta-wrapper-section {
+    position: relative;
+  }
+  .cta-wrapper-inner {
+    position: relative;
+    z-index: 2;
+  }
+  .cta-wrapper-section::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 50%;
+    background-color: #efedf0;
+    z-index: 1;
+  }
+  .clientes-right {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 100%;
+    bottom: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    overflow: hidden;
+    padding-left: 2rem;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  .footer {
+    padding-top: 10rem;
+    padding-bottom: 10rem;
+    background-color: #efedf0;
+    color: #333;
+  }
+  .bg1 {
+    background-image: url('assets/bg1.png');
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+  }
+  .bg2 {
+    background-image: url('assets/bg2.png');
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+  }
+  .bg3 {
+    background-image: url('assets/bg3.png');
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+  }
+  .icon-1 {
+    background-color: var(--pink-light);
+  }
+  .icon-2 {
+    background-color: var(--yellow);
+  }
+  .icon-3 {
+    background-color: var(--green-light);
+  }
+</style>    
+</head>
+<body>
+    <div class="bg2"></div>
+    <div class="gradient"></div>
+    <div class="morph">
+        <svg  xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 288 288">
+            <linearGradient id="PSgrad_0" x1="70.711%" x2="0%" y1="70.711%" y2="0%">
+                <stop offset="0%" stop-color="rgb(173, 216, 230)" stop-opacity="1" /> <!-- Light Blue -->
+                <stop offset="100%" stop-color="rgb(255, 182, 193)" stop-opacity="1" /> <!-- Light Pink -->
+            </linearGradient>
+            <path fill="url(#PSgrad_0)">
+            
+                <animate id="animation-to-check" repeatCount="indefinite" fill="freeze" attributeName="d" dur="10s"
+                
+                values="M37.5,186c-12.1-10.5-11.8-32.3-7.2-46.7c4.8-15,13.1-17.8,30.1-36.7C91,68.8,83.5,56.7,103.4,45
+                c22.2-13.1,51.1-9.5,69.6-1.6c18.1,7.8,15.7,15.3,43.3,33.2c28.8,18.8,37.2,14.3,46.7,27.9c15.6,22.3,6.4,53.3,4.4,60.2
+                c-3.3,11.2-7.1,23.9-18.5,32c-16.3,11.5-29.5,0.7-48.6,11c-16.2,8.7-12.6,19.7-28.2,33.2c-22.7,19.7-63.8,25.7-79.9,9.7
+                c-15.2-15.1,0.3-41.7-16.6-54.9C63,186,49.7,196.7,37.5,186z;
+                
+                
+                M51,171.3c-6.1-17.7-15.3-17.2-20.7-32c-8-21.9,0.7-54.6,20.7-67.1c19.5-12.3,32.8,5.5,67.7-3.4C145.2,62,145,49.9,173,43.4
+                c12-2.8,41.4-9.6,60.2,6.6c19,16.4,16.7,47.5,16,57.7c-1.7,22.8-10.3,25.5-9.4,46.4c1,22.5,11.2,25.8,9.1,42.6
+                c-2.2,17.6-16.3,37.5-33.5,40.8c-22,4.1-29.4-22.4-54.9-22.6c-31-0.2-40.8,39-68.3,35.7c-17.3-2-32.2-19.8-37.3-34.8
+                C48.9,198.6,57.8,191,51,171.3z;
+                
+                M37.5,186c-12.1-10.5-11.8-32.3-7.2-46.7c4.8-15,13.1-17.8,30.1-36.7C91,68.8,83.5,56.7,103.4,45
+                c22.2-13.1,51.1-9.5,69.6-1.6c18.1,7.8,15.7,15.3,43.3,33.2c28.8,18.8,37.2,14.3,46.7,27.9c15.6,22.3,6.4,53.3,4.4,60.2
+                c-3.3,11.2-7.1,23.9-18.5,32c-16.3,11.5-29.5,0.7-48.6,11c-16.2,8.7-12.6,19.7-28.2,33.2c-22.7,19.7-63.8,25.7-79.9,9.7
+                c-15.2-15.1,0.3-41.7-16.6-54.9C63,186,49.7,196.7,37.5,186z    "/>
+            
+                </path>
+            
+            </svg>
+    </div>
+
+    <section class="hero is-fullheight background">
+        <nav class="navbar">
+            <div class="container">
+            <div id="navMenu" class="navbar-menu">
+                <div class="navbar-start">
+                <a class="navbar-item logo">
+                    <img src="assets/moli.svg" alt="Moli" height="40">
+                    <span class="is-sr-only">Moli</span>
+                </a>
+                <span class="navbar-item">
+                    Tu compra, tu momento.
+                </span>
+                </div>
+            </div>
+            </div>
+        </nav>
+        <div class="presentation">
+            <div class="presentation-text">
+                <div class="estamos">ESTAMOS</div>
+                <div class="transformando">TRANSFORMANDO</div>
+                <div class="la-manera-de">LA MANERA DE</div>
+                <div class="comprar">COMPRAR</div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="section is-medium">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8">
+                    <p class="body-large mb-6">
+                        Somos una startup digital en crecimiento, con la misión de ofrecer productos de alta calidad y una experiencia de compra fácil, rápida y segura. 
+                    </p>
+                    <a href="#contact" class="button is-rounded is-primary is-large">Ponte en contacto</a>
+                </div>
+                <div class="column is-3 is-offset-1">
+                    <ul class="facts">
+                        <li>
+                            <div class="icon icon-1">
+                                <img src="assets/rocket.svg" alt="">
+                            </div>
+                            <h3 class="title is-4">+50k ventas</h3>
+                        </li>
+                        <li>
+                            <div class="icon icon-2">
+                                <img src="assets/shopping-bag.svg" alt="">
+                            </div>
+                            <h3 class="title is-4">Productos<br />de Alta Calidad</h3>
+                        </li>
+                        <li>
+                            <div class="icon icon-3">
+                                <img src="assets/user.svg" alt="comunidad">
+                            </div>
+                            <h3 class="title is-4">Comunidad confiable</h3> 
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- clientes -->
+    <section class="section section-clientes is-large pl-0 pr-0">
+        <div class="columns">
+            <div class="column is-2">
+                <img src="assets/people.jpg" alt="clientes" style="width: 100%; height: auto;">
+            </div>
+            <div class="column is-4">
+                <p class="body-large">Clientes satisfechos</p>
+                <p class="body-medium">En Moli creemos que el ecommerce va más allá de vender productos: construimos una comunidad de clientes que confían en nosotros y disfrutan cada compra.
+            </div>
+            <div class="clientes-right">
+                <div class="card cliente-1">
+                    <div class="card-content has-text-centered">
+                        <img src="assets/moli.svg" alt="Moli">
+                        <p>Cliente 1</p>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Beatae alias animi quod quaerat commodi architecto, dolorem soluta sed rem ea. Recusandae illo culpa quam fuga adipisci necessitatibus eaque cupiditate labore.</p>
+                    </div>
+                </div>
+                <div class="card cliente-2">
+                    <div class="card-content has-text-centered">
+                        <img src="assets/moli.svg" alt="Moli">
+                        <p>Cliente 2</p>
+                        <p>Ventas exitosas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="section cta-wrapper-section">
+        <div class="container has-text-centered cta-wrapper-inner">
+            <div class="cta-wrapper">
+                <h2 class="title is-2 has-text-white">¡Listo para transformar tu compra?</h2>
+                <p class="subtitle is-4 has-text-white mb-6">Contáctanos hoy y sé parte de la revolución de Moli.</p>
+                <a href="#contact" class="button is-rounded is-warning is-large">Contactanos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <img src="assets/moli.svg" alt="Moli" style="max-height: 50px;">
+            <p>© 2025 Moli. Todos los derechos reservados.</p>
+            <p><a href="#careers" class="has-text-primary">Trabaja con nosotros</a></p>
+        </div>
+    </footer>
+</body>
+</html>
